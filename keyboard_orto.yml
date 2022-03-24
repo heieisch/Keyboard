@@ -1,0 +1,236 @@
+points:
+  key:
+    padding: cy
+    footprints:
+      choc_flipped:
+        type: choc
+        nets:
+          from: =colrow
+          to: =column_net
+        params:
+            keycaps: true
+            reverse: true
+            hotswap: false
+      choc:
+        type: choc
+        anchor:
+          rotate: 180
+        nets:
+          from: =colrow
+          to: =column_net
+        params:
+            keycaps: true
+            reverse: true
+      diode:
+        type: diode
+        anchor:
+          shift: [8.25, 2]
+          rotate: 90
+        nets:
+          from: =colrow
+          to: =row_net
+        params:
+          tht: false
+  zones:
+    board:
+      rows:
+        bottom:
+        home:
+        top:
+      anchor:
+        rotate: 0
+      columns:
+        outer:
+          spread: cx
+          row_overrides: 
+            bottom:
+              bind: [0, 1, 0.5, 0.5]
+              column_net: P4
+              row_net: P16
+            home:
+              bind: [0, 1, 0, 0.5]
+              column_net: P4
+              row_net: P14
+            top:
+              bind: [0.5, 1, 0, 0.5]
+              column_net: P4
+              row_net: P15
+        pinky:
+          spread: cx
+          row_overrides: 
+            bottom:
+              bind: [0, 1, 0.5, 0]
+              column_net: P5
+              row_net: P16
+            home:
+              bind: [0, 1, 0, 0]
+              column_net: P5
+              row_net: P14
+            top:
+              bind: [0.5, 1, 0, 0]
+              column_net: P5
+              row_net: P15
+        ring:
+          spread: cx
+          rotate: 0
+          origin: [0, 0]
+          stagger: 0
+          rows: 
+            bottom:
+              bind: [0, 1, 0.5, 0]
+              column_net: P6
+              row_net: P16
+            home: 
+              bind: [0, 1, 0, 0]
+              column_net: P6
+              row_net: P14
+            top: 
+              bind: [0.5, 1, 0, 0]
+              column_net: P6
+              row_net: P15
+        middle:
+          spread: cx
+          rotate: 0
+          origin: [0, 0]
+          stagger: 0
+          rows: 
+            bottom:
+              bind: [0, 1, 0.5, 0]
+              column_net: P7
+              row_net: P16
+            home: 
+              bind: [0, 1, 0, 0]
+              column_net: P7           
+              row_net: P14
+            top: 
+              bind: [0.5, 1, 0, 0]
+              column_net: P7
+              row_net: P15
+        index:
+          spread: cx
+          rotate: 0
+          origin: [0, 0]
+          stagger: 0
+          rows: 
+            bottom:
+              bind: [0, 1, 0, 0]
+              column_net: P8
+              row_net: P16
+            home: 
+              bind: [0, 1, 0, 0]
+              column_net: P8
+              row_net: P14
+            top: 
+              bind: [0.5, 1, 0, 0]
+              column_net: P8
+              row_net: P15
+        inner:
+          spread: cx
+          origin: [0, 0]
+          rotate: 0
+          stagger: 0
+          rows: 
+            bottom:
+              bind: [0, 25, 0, 0]
+              column_net: P9
+              row_net: P16
+            home: 
+              bind: [0, 25, 0, 0]
+              column_net: P9
+              row_net: P14
+            top: 
+              bind: [0.5, 25, 0, 0]
+              column_net: P9
+              row_net: P15
+    thumbfan:
+      anchor:
+        ref: board_inner_bottom
+        shift: [-cx, -cy]
+      rows:
+        thumb:
+      columns:
+        extra_near:
+          rows: 
+            thumb: 
+              bind: [1, 1, 0.5, 0.5]
+              column_net: P6
+              row_net: P10
+        near:
+          spread: cx
+          rotate: 0
+          origin: [0,0]
+          rows: 
+            thumb: 
+              bind: [1, 1, 0.5, 0]
+              column_net: P7
+              row_net: P10
+        home:
+          spread: cx
+          rotate: 0
+          origin: [0,0]
+          rows: 
+            thumb: 
+              bind: [1, 1, 0.5, 0]
+              column_net: P8
+              row_net: P10
+        inner:
+          spread: cx
+          rotate: 0
+          origin: [0, 0]
+          rows: 
+            thumb: 
+              bind: [0.5, 0.5, 0.5, 0]
+              column_net: P9
+              row_net: P10
+  rotate: 0
+  #mirror:
+   # ref: board_pinky_home
+    #distance: 253.7529778
+outlines:
+  exports:
+    raw: 
+      - type: keys
+        side: left
+        size: [1cx , 1cx]
+      - type: rectangle
+        size: [7, 5]
+        anchor:
+          ref: board_index_top
+          shift: [21, 6]
+    cutout:
+      - type: outline
+        name: raw
+        fillet: 0
+    keycap_outlines:
+      - type: keys
+        side: left
+        size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+        bound: false        
+pcbs:
+  fount:
+    outlines:
+      main:
+        outline: cutout
+    footprints:
+      promicro:
+        type: promicro
+        anchor:
+          ref: board_inner_bottom
+          shift: [22, cx+6.3]
+          rotate: -90
+        params:
+          orientation: down
+      trrs:
+        type: trrs
+        params:
+          reverse: true
+          symmetric: true
+        anchor: 
+          ref: board_index_bottom
+          shift: [51, 2]
+          rotate: -90
+        nets: 
+          A: GND
+          B: GND
+          C: P2
+          D: VCC
